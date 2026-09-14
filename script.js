@@ -3,9 +3,10 @@
    1. Mobile menu toggle
    2. Sticky header shadow on scroll
    3. Smooth scroll + close mobile menu on nav click
-   4. Reviews carousel (prev/next + dots, touch-friendly via scroll snap logic)
+   4. Reviews carousel (prev/next + dots)
    5. Newsletter form handling (front-end only demo)
    6. Footer year auto-fill
+   7. Scroll-reveal for [data-reveal] elements
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -23,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function openMenu() {
     mobileNav.hidden = false;
-    // next frame so the transition (if any) has something to animate from
     requestAnimationFrame(function () {
       mobileNav.classList.add('is-open');
     });
@@ -37,12 +37,10 @@ document.addEventListener('DOMContentLoaded', function () {
       isOpen ? closeMenu() : openMenu();
     });
 
-    // Close the mobile menu whenever a link inside it is used
     mobileNav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', closeMenu);
     });
 
-    // Close on Escape for keyboard users
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
         closeMenu();
@@ -50,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    // If the viewport grows past the mobile breakpoint, reset menu state
     window.addEventListener('resize', function () {
       if (window.innerWidth > 860 && menuToggle.getAttribute('aria-expanded') === 'true') {
         closeMenu();
@@ -72,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
       var targetId = this.getAttribute('href');
-      if (targetId.length < 2) return; // guard against bare "#"
+      if (targetId.length < 2) return;
       var target = document.querySelector(targetId);
       if (!target) return;
 
@@ -80,12 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
       var headerOffset = siteHeader ? siteHeader.offsetHeight : 0;
       var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerOffset - 12;
 
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
 
-      // Move focus for keyboard/screen-reader users once the scroll settles
       window.setTimeout(function () {
         target.setAttribute('tabindex', '-1');
         target.focus({ preventScroll: true });
@@ -103,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var cards = Array.prototype.slice.call(track.children);
     var currentIndex = 0;
 
-    // Build one dot per card
     cards.forEach(function (_, i) {
       var dot = document.createElement('button');
       dot.type = 'button';
@@ -116,15 +108,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var dots = Array.prototype.slice.call(dotsWrap.children);
 
     function visibleCount() {
-      // How many cards currently fit on screen, based on track vs card width
       var trackWidth = track.parentElement.clientWidth;
-      var cardWidth = cards[0].getBoundingClientRect().width + 20; // + gap
+      var cardWidth = cards[0].getBoundingClientRect().width + 20;
       return Math.max(1, Math.round(trackWidth / cardWidth));
     }
 
-    function maxIndex() {
-      return Math.max(0, cards.length - visibleCount());
-    }
+    function maxIndex() { return Math.max(0, cards.length - visibleCount()); }
 
     function updateDots() {
       dots.forEach(function (dot, i) {
@@ -134,14 +123,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function goTo(index) {
       currentIndex = Math.min(Math.max(index, 0), maxIndex());
-      var offset = cards[0].getBoundingClientRect().width + 20; // card + gap
+      var offset = cards[0].getBoundingClientRect().width + 20;
       track.style.transform = 'translateX(-' + (offset * currentIndex) + 'px)';
       updateDots();
     }
 
     prevBtn.addEventListener('click', function () { goTo(currentIndex - 1); });
     nextBtn.addEventListener('click', function () { goTo(currentIndex + 1); });
-
     window.addEventListener('resize', function () { goTo(0); });
 
     goTo(0);
@@ -165,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      // In production this would POST to the email-service API.
       joinNote.textContent = 'You\u2019re on the list \u2014 look out for the first drop email.';
       joinNote.style.color = '';
       joinForm.reset();
@@ -176,6 +163,26 @@ document.addEventListener('DOMContentLoaded', function () {
   var yearEl = document.getElementById('year');
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
+  }
+
+  /* ---------- 7. Scroll-reveal for [data-reveal] elements ---------- */
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  if (revealEls.length) {
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      revealEls.forEach(function (el) { observer.observe(el); });
+    } else {
+      // Fallback for browsers without IntersectionObserver support
+      revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+    }
   }
 
 });
