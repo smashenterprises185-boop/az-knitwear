@@ -888,6 +888,18 @@ input:focus-visible {
    VERY SMALL MOBILE — up to 379px
    -------------------------------------------------------------------------- */
 @media (max-width: 379px) {
+ .bg-clip {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   object-fit: cover;
+   z-index: -1;
+}
   .hero {
     margin-left: 0;
     margin-top: 0;
@@ -970,6 +982,20 @@ input:focus-visible {
    SMALL / STANDARD MOBILE — 380px to 479px
    -------------------------------------------------------------------------- */
 @media (min-width: 380px) and (max-width: 479px) {
+
+  .bg-clip {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   object-fit: cover;
+   z-index: -1;
+}
+
   .hero {
     margin-left: 0;
     margin-top: 0;
@@ -1035,6 +1061,20 @@ input:focus-visible {
    LARGE MOBILE — 480px to 719px
    -------------------------------------------------------------------------- */
 @media (min-width: 480px) and (max-width: 719px) {
+
+  .bg-clip {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   object-fit: cover;
+   z-index: -1;
+}
+
   .hero {
     margin-left: 0;
     margin-top: 0;
@@ -1108,6 +1148,20 @@ input:focus-visible {
    Hero becomes two-column; nav still in hamburger mode (see block above).
    -------------------------------------------------------------------------- */
 @media (min-width: 720px) and (max-width: 859px) {
+
+  .bg-clip {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   object-fit: cover;
+   z-index: -1;
+}
+
   .hero {
     margin-left: 20px;
     margin-top: 0;
@@ -1172,6 +1226,20 @@ input:focus-visible {
    Full desktop nav returns; hero two-column.
    -------------------------------------------------------------------------- */
 @media (min-width: 860px) and (max-width: 1079px) {
+
+  .bg-clip {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   object-fit: cover;
+   z-index: -1;
+}
+
   .hero__grid { 
     grid-template-columns: 1.1fr 0.9fr; 
   }
@@ -1217,6 +1285,20 @@ input:focus-visible {
    DESKTOP — 1080px to 1399px
    -------------------------------------------------------------------------- */
 @media (min-width: 1080px) and (max-width: 1399px) {
+
+  .bg-clip {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   object-fit: cover;
+   z-index: -1;
+}
+
   .hero__headline { 
     letter-spacing: 0.5px; 
   }
@@ -1261,6 +1343,20 @@ input:focus-visible {
    LARGE DESKTOP — 1400px to 1799px
    -------------------------------------------------------------------------- */
 @media (min-width: 1400px) {
+
+  .bg-clip {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   object-fit: cover;
+   z-index: -1;
+}
+
   .hero__visual {
     grid-column: 2;
     justify-self: end;
@@ -1305,6 +1401,20 @@ input:focus-visible {
    -------------------------------------------------------------------------- */
 @media (min-width: 1800px) {
   :root { --wrap-max: 1480px; }
+
+  .bg-clip {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   object-fit: cover;
+   z-index: -1;
+}
+
   .hero {
     margin-inline: auto;
     max-width: var(--wrap-max);
@@ -1347,6 +1457,19 @@ input:focus-visible {
    BACKGROUND VIDEO — width/height coverage across breakpoints
    -------------------------------------------------------------------------- */
 @media (max-width: 1399px) {
+  .bg-clip {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   object-fit: cover;
+   z-index: -1;
+}
+
   .bg-video {
     width: 100vw;
     height: 100vh;
@@ -1360,6 +1483,20 @@ input:focus-visible {
 
 /* Landscape phones / short viewports: shrink vertical hero padding */
 @media (max-height: 480px) and (orientation: landscape) {
+
+  .bg-clip {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   object-fit: cover;
+   z-index: -1;
+}
+
   .hero { 
     padding-block: 1.5rem; 
     margin-top: 0; 
@@ -1374,6 +1511,20 @@ input:focus-visible {
 
 /* Very short mobile screens generally */
 @media (max-height: 700px) and (max-width: 768px) {
+  
+  .bg-clip {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   object-fit: cover;
+   z-index: -1;
+}
+
   .bg-video {
     object-fit: cover;
   }
@@ -1381,6 +1532,20 @@ input:focus-visible {
 
 /* Tall mobile screens */
 @media (min-height: 850px) and (max-width: 540px) {
+
+  .bg-clip {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   object-fit: cover;
+   z-index: -1;
+}
+
   .bg-video {
     object-fit: cover;
   }
@@ -1388,6 +1553,20 @@ input:focus-visible {
 
 /* Landscape mobile / small tablet */
 @media (orientation: landscape) and (max-height: 600px) {
+
+  .bg-clip {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   min-width: 100%;
+   min-height: 100%;
+   width: auto;
+   height: auto;
+   object-fit: cover;
+   z-index: -1;
+}
+
   .bg-video {
     width: 100vw;
     height: 100vh;
